@@ -1,20 +1,64 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-checkbox #showDetails [value]="" [checked]="isChecked" (change)="onChange($event)">Show Details</mat-checkbox>
+<div *ngIf="showDetails.checked">Some Details ...</div>
+<br>
+<mat-radio-group value="1">
+    <mat-radio-button value="1">Male</mat-radio-button>
+    <mat-radio-button value="2">Female</mat-radio-button>
+</mat-radio-group>
+<br>
+<mat-form-field>
+    <mat-select placeholder="Selected Color" [(ngModel)]="col">
+        <mat-option *ngFor="let color of colors" [value]="color.id">{{ color.name }}</mat-option>
+    </mat-select>
+</mat-form-field>
+<form>
+    <mat-form-field>
+      <input #username="ngModel" ngModel name="username" matInput placeholder="Favorite food" required>
+      <mat-hint>Type a unique food item</mat-hint>
+      <span matSuffix>@food.com</span>
+      <span matPrefix>food.</span>
+      <mat-error *ngIf="username.invalid && username.errors.required">
+          The food item field is required.
+      </mat-error>
+    </mat-form-field>
+  <br>
+    <mat-form-field>
+      <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+  </form>
+  <mat-form-field>
+      <input (focus)="birthdate.open()" [min]="minDate" [max]="maxDate" type="text" matInput [matDatepicker]="birthdate">
+      <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+      <mat-datepicker #birthdate touchUi="true"></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-icon>add add_alert</mat-icon>
+  <br>
+  <button mat-button>Click me!</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-fab color="basic"><mat-icon>home</mat-icon></button><!--Fab - Floatable Action Button-->  
+  <button mat-mini-fab color="accent"><mat-icon>check</mat-icon></button>
+  <br>
+  <mat-chip-list>
+    <mat-chip 
+        *ngFor="let category of categories" 
+        (click)="selectCategory(category)" 
+        [selected]="category.selected">{{ category.name }}</mat-chip>
+  </mat-chip-list>
+  <br>
+  <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <br>
+  <span matTooltip="Here is a tooltip" matTooltipPosition="right">Some text</span>
+  <mat-tab-group>
+      <mat-tab label="Billing">Content of the billing tab</mat-tab>
+      <mat-tab label="Shipping">Content of the shipping tab</mat-tab>
+  </mat-tab-group>
+  <button mat-raised-button (click)="openDialog()">Open</button>
+  <button color="primary" mat-raised-button>Button 1</button>
+  <button color="accent" mat-raised-button>Button 2</button>
+  <br>
+  <h1 class="mat-headline">Heading 1</h1>
+  <p class="mat-body-1">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  </p>
